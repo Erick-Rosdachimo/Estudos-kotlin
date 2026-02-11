@@ -15,17 +15,12 @@
 */
 
 fun ex04(): Int {
-    println("Insira a quantidade de dinheiro: ")
-    val n = readln().toInt()
+    println("Insira a quantidade em dinheiro: ")
+    val dinheiro = readln().toIntOrNull()?.takeIf { it > 0 } ?: return 0
     println("Insira o preço do chocolate: ")
-    val c = readln().toInt()
+    val preco = readln().toIntOrNull()?.takeIf { it > 0 } ?: return 0
     println("Insira a quantidade de embalagens: ")
-    val m = readln().toInt()
+    val embalagens = readln().toIntOrNull()?.takeIf { it > 0 } ?: return 0
 
-    var chocolates = 0
-
-    chocolates += n / c
-    chocolates += m / 5
-
-    return chocolates
+    return (dinheiro / preco) + (embalagens / 5)
 }

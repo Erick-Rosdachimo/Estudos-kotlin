@@ -15,28 +15,21 @@
     => Exercício gentilmente cedido pelos profs. Jorge Cutigi (IFSP/SCL) e Adenilso Simão (ICMC/USP)
 */
 
-fun ex09(): String{
-    //var acabou = false
-    var quantPessoas = 0f
-    var totalIdade = 0f
-    var quantMaior = 0
-    var quantIdosa = 0f
+fun ex09(): String {
+    val idades = mutableListOf<Int>()
 
     while (true) {
-        println("Insira idade para a contagem e negativo para terminar: ")
-        val idade = readln().toInt()
-
+        print("Insira idade para a contagem e negativo para terminar: ")
+        val idade = readln().toIntOrNull() ?: continue
         if (idade < 0) break
-
-        quantPessoas += 1
-        totalIdade += idade
-        if (idade >= 18) quantMaior += 1
-        if (idade >= 75) quantIdosa += 1
-
+        idades += idade
     }
-    val media = "%.2f".format(totalIdade / quantPessoas)
-    val percentagemIdosas = "%.2f".format((quantIdosa / quantPessoas) * 100)
 
+    if (idades.isEmpty()) return "0.00 0 0.00%"
 
-    return "$media $quantMaior $percentagemIdosas%"
+    val media = idades.average()
+    val maiores = idades.count { it >= 18 }
+    val porcentagemIdosas = idades.count { it >= 75 } * 100.0 / idades.size
+
+    return "%.2f %d %.2f%%".format(media, maiores, porcentagemIdosas)
 }

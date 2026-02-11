@@ -13,16 +13,17 @@
 */
 
 fun ex01 (): String {
-    println("Insira um número: ")
-    val quant = readln().toInt()
-    if (quant <= 0) return "Erro"
+    print("Insira um número: ")
+    val quant = readln().toIntOrNull()
+        ?.takeIf { it > 0 }
+        ?: return "Erro"
 
-    val a = quant * 0.25 + 7.5
-    val b = quant * 0.50 + 2.5
+    val criterioA = quant * 0.25 + 7.5
+    val criterioB = quant * 0.50 + 2.5
 
     return when{
-        a < b -> "Criterio A"
-        a > b -> "Criterio B"
+        criterioA < criterioB -> "Criterio A"
+        criterioA > criterioB -> "Criterio B"
         else -> "Erro"
     }
 }

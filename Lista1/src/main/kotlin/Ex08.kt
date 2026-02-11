@@ -20,18 +20,12 @@
 
 fun ex08(): Int{
     println("Insira a quantidade de limões: ")
-    val n = readln().toInt()
+    val quantidade = readln().toIntOrNull()?.takeIf { it > 0 } ?: return 0
     println("Insira o preço do primeiro limão: ")
-    var c = readln().toInt()
+    var precoInicial = readln().toIntOrNull()?.takeIf { it > 0 } ?: return 0
 
-    var total = 0
-    var contador = 0
-
-    while (contador < n) {
-        contador++
-        total += c
-        if (c > 1) c--
-    }
-
-    return total
+    return (0..<quantidade)
+        .sumOf { i ->
+            (precoInicial - i).coerceAtLeast(1)
+        }
 }

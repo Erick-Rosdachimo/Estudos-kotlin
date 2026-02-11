@@ -41,20 +41,19 @@
  */
 
 fun ex09(): String{
-    println("Insira a dimensão A da caixa:")
-    val a = readln().toInt()
-    println("Insira a dimensão B da caixa:")
-    val b = readln().toInt()
-    println("Insira a dimensão C da caixa:")
-    val c = readln().toInt()
-    println("Insira a largura da janela:")
-    val l = readln().toInt()
-    println("Insira a altura da janela:")
-    val h = readln().toInt()
+    fun lerNumero(mensagem: String): Int? {
+        print(mensagem)
+        return readln().toIntOrNull()?.takeIf { it > 0  }
+    }
+
+    val a = lerNumero("Insira A: ") ?: return "Erro"
+    val b = lerNumero("Insira B: ") ?: return "Erro"
+    val c = lerNumero("Insira C: ") ?: return "Erro"
+    val l = lerNumero("Insira largura: ") ?: return "Erro"
+    val h = lerNumero("Insira altura: ") ?: return "Erro"
 
     val caixa = listOf(a, b, c).sorted()
+    val janela = listOf(l, h).sorted()
 
-    if (caixa[0] > minOf(l,h) || caixa[1] > maxOf(l,h)) return "N"
-
-    return "S"
+    return if (caixa[0] > janela[0] || caixa[1] > janela[1]) "N" else "S"
 }

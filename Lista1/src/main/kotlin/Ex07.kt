@@ -18,15 +18,21 @@
 */
 
 fun ex07(): String {
-    println("Insira a distancia base: ")
-    val x = readln().toFloat()
-    println("Insira o valor 1: ")
-    val v1 = readln().toFloat()
-    println("Insira o valor 2: ")
-    val v2 = readln().toFloat()
-    println("Insira a distancia da viagem: ")
-    val a = readln().toFloat()
+    fun readFloat(prompt: String): Float =
+        print(prompt).let {
+            readln().toFloatOrNull() ?: return 0f
+        }
 
-    if (x >= a) return "%.2f".format(a * v1)
-    return "%.2f".format(a * v2)
+    val distanciaBase = readFloat("Insira a distancia base: ")
+    val valor1 = readFloat("Insira o valor 1: ")
+    val valor2 = readFloat("Insira o valor 2: ")
+    val distanciaViagem = readFloat("Insira a distancia da viagem: ")
+
+    val total = if (distanciaViagem <= distanciaBase) {
+        distanciaViagem * valor1
+    } else {
+        distanciaViagem * valor2
+    }
+
+    return "%.2f".format(total)
 }

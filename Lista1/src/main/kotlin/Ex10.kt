@@ -24,29 +24,17 @@
 */
 
 fun ex10(): String{
-    println("Insira a posição do canguru 1: ")
-    val x1 = readln().toInt()
-    println("Insira a distancia do pulo do canguru 1")
-    val v1 = readln().toInt()
+    fun readInt(prompt: String): Int =
+        print(prompt).let { readln().toIntOrNull() ?: return 0 }
 
-    println("Insira a posição do canguru 2: ")
-    val x2 = readln().toInt()
-    println("Insira a distancia do pulo do canguru 2")
-    val v2 = readln().toInt()
+    val x1 = readInt("Insira a posição do canguru 1: ")
+    val v1 = readInt("Insira a distancia do pulo do canguru 1: ")
+    val x2 = readInt("Insira a posição do canguru 2: ")
+    val v2 = readInt("Insira a distancia do pulo do canguru 2: ")
 
-    if (v1 == v2) {
-        return if (x1 == x2) "SIM" else "NAO"
-    }
-
-    val numerador = x1 - x2
-    val denominador = v2 - v1
-
-    return if (
-        numerador % denominador == 0 &&
-        numerador / denominador >= 0
-    ) {
-        "SIM"
-    } else {
-        "NAO"
+    return when {
+        v1 == v2 -> if (x1 == x2) "SIM" else "NAO"
+        (x1 - x2) % (v2 - v1) == 0 && (x1 - x2) / (v2 - v1) >= 0 -> "SIM"
+        else -> "NAO"
     }
 }

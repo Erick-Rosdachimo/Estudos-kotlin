@@ -7,30 +7,26 @@
     Qualquer valor fora do domínio de entrada tem como saída esperada a String "Erro".
 */
 
-fun ex03(): String{
-    println("Insira os números do vetor inicial:")
-    val inicial = readln()
-        .split(" ")
-        .filter { it.toIntOrNull() != null }
-        .map { it.toInt() }
+    fun ex03(): String{
+        print("Insira os números do vetor inicial:")
+        val vetor = readln()
+            .trim()
+            .split(Regex("\\s+"))
+            .mapNotNull { it.toIntOrNull() }
+            .toMutableList()
+            .takeIf { it.size == 5 && it.distinct().size != 5  }
+            ?: return "Erro"
 
-    if (inicial.size != 5) return "Erro"
-    if (inicial.toSet().size != 5) return "Erro"
+        while (vetor.size in 1 ..< 10) {
+            println("Insira o proximo numero:")
+            val entrada = readln().toIntOrNull() ?: return "Erro"
 
-    val vetor = inicial.toMutableList()
+            if (!vetor.remove(entrada)) {
+                vetor.add(entrada)
+            }
 
-    while (vetor.isNotEmpty() && vetor.size < 10) {
-        println("Insira o proximo numero:")
-        val entrada = readln().toIntOrNull() ?: return "Erro"
-
-        if (entrada in vetor) {
-            vetor.remove(entrada)
-        } else {
-            vetor.add(entrada)
+            println(vetor.joinToString(" "))
         }
 
-        println(vetor.joinToString(" "))
+        return "Fim"
     }
-
-    return "Fim"
-}

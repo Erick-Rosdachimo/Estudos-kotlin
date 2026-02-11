@@ -18,19 +18,29 @@
 */
 
 fun ex06(): String{
-    println("Tamanho vetor:")
-    val tamanhoVetor = readln().toInt()
-    println("Vetor 1:")
-    val vetor1 = readln().trim().split(" ").map { it.toInt() }.toMutableList()
-    println("Vetor 2:")
-    val vetor2 = readln().trim().split(" ").map { it.toInt() }.toMutableList()
+    print("Tamanho vetor: ")
+    val tamanhoVetor = readln().toIntOrNull()?.takeIf { it > 0 } ?: return "Erro"
 
-    val vetorIntercalado = mutableListOf<Int>()
 
-    for (i in 0..<tamanhoVetor){
-        vetorIntercalado.add(vetor1[i])
-        vetorIntercalado.add(vetor2[i])
-    }
+    print("Vetor 1: ")
+    val vetor1 = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size == tamanhoVetor }
+        ?: return "Erro"
 
-    return vetorIntercalado.joinToString(" ")
+    print("Vetor 2: ")
+    val vetor2 = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size >= tamanhoVetor }
+        ?: return "Erro"
+
+
+    return vetor1
+        .zip(vetor2)
+        .flatMap { (a,b) -> listOf(a,b) }
+        .toString()
 }

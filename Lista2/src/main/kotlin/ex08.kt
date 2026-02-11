@@ -30,15 +30,15 @@ import kotlin.math.abs
 */
 
 fun ex08(): String{
-    println("Insira a quantidade de presentes:")
-    val quant = readln().toInt()
+    print("Insira a quantidade de presentes: ")
+    val quantidade = readln().toIntOrNull()?.takeIf { it > 0 } ?: return "Erro"
 
     var totalA = 0
     var totalB = 0
 
-    for (i in 1..quant){
+    repeat(quantidade){
         println("Insira o peso do proximo presente:")
-        val presente = readln().toInt()
+        val presente = readln().toIntOrNull()?.takeIf { it > 0 } ?: return "Erro"
 
         if(totalA > totalB) totalB += presente else totalA += presente
         if(abs(totalB - totalA) > 5) return "N"

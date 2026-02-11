@@ -14,10 +14,13 @@
 */
 
 fun ex03(): String{
-    println("Insira um ano: ")
-    val ano = readln().toInt()
-    if (ano <= 0) return "Erro"
-    if (ano % 400 == 0) return "Ano bissexto"
-    if (ano % 4 == 0 && ano % 100 != 0) return "Ano bissexto"
-    return "Ano não bissexto"
+    print("Insira um ano: ")
+
+    val ano = readln().toIntOrNull()
+        ?.takeIf { it > 0 }
+        ?: return "Erro"
+
+    return if (ano.isLeapYear()) "Ano bissexto" else "Ano não bissexto"
 }
+
+fun Int.isLeapYear() = (this % 400 == 0) || (this % 4 == 0 && this % 100 != 0)

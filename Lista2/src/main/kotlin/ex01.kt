@@ -13,14 +13,13 @@
 */
 
 fun ex01(): String{
-    println("Insira as temperaturas:")
-    val entrada = readln().split(" ")
+    print("Insira as temperaturas:")
+    val temperaturas = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size == 7  }
+        ?: return "Erro"
 
-    val temperaturas = entrada.mapNotNull { it.toIntOrNull() }
-
-    if (temperaturas.size != 7 || entrada.size != 7) return "Erro"
-
-    val mediaTemperatura = temperaturas.average()
-    val quantMaiorMedia = temperaturas.count { it > mediaTemperatura }
-    return quantMaiorMedia.toString()
+    return temperaturas.count { it > temperaturas.average() }.toString()
 }

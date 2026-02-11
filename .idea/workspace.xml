@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4bf2122-3b6c-461d-b403-c662691e0cf9" name="Changes" comment="" />
+    <list default="true" id="d4bf2122-3b6c-461d-b403-c662691e0cf9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lista1/src/main/kotlin/Ex01.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Lista1/src/main/kotlin/Ex01.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lista1/src/main/kotlin/Ex02.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Lista1/src/main/kotlin/Ex02.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lista1/src/main/kotlin/Ex03.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Lista1/src/main/kotlin/Ex03.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POO/Colecoes e mapas/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/POO/Colecoes e mapas/.idea/misc.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +40,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>

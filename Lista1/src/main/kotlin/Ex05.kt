@@ -21,15 +21,17 @@
 
 fun ex05(): Float {
     println("Insira o limite de velocidade: ")
-    val l = readln().toInt()
+    val limite = readln().toFloatOrNull()?.takeIf { it > 0 } ?: return 0f
     println("Insira o valor da multa: ")
-    val m = readln().toFloat()
+    val multaBase = readln().toFloatOrNull()?.takeIf { it > 0 } ?: return 0f
     println("Insira o valor da por KM ultrapassado: ")
-    val a = readln().toFloat()
+    val adicionalPorKm: Float = readln().toFloatOrNull()?.takeIf { it > 0 } ?: return 0f
     println("Insira a velocidade captada: ")
-    val v = readln().toInt()
+    val velocidade = readln().toFloatOrNull()?.takeIf { it > 0 } ?: return 0f
 
-    if (l >= v) return 0.00f
-    val result = m + ((v - l) * a)
-    return result
+    return (velocidade - limite)
+        .takeIf { it > 0 }
+        ?.let { multaBase + it * adicionalPorKm }
+        ?: 0f
+
 }

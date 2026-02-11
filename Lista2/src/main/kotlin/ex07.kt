@@ -39,12 +39,28 @@
  */
 
 fun ex07(): String{
-    println("Insira a dimensão da pagina:")
-    val (x, y) = readln().split(" ").map { it.toInt() }
-    println("Insira a dimensão da foto 1:")
-    val (l1, h1) = readln().split(" ").map { it.toInt() }
-    println("Insira a dimensão da foto 2:")
-    val (l2, h2) = readln().split(" ").map { it.toInt() }
+    print("Insira a dimensão da pagina: ")
+    val (x, y) = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size == 2 }
+        ?: return "Erro"
+
+    print("Insira a dimensão da foto 1: ")
+    val (l1, h1) = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size == 2 }
+        ?: return "Erro"
+    print("Insira a dimensão da foto 2: ")
+    val (l2, h2) = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size == 2 }
+        ?: return "Erro"
 
     val min1 = minOf(l1, h1)
     val min2 = minOf(l2, h2)

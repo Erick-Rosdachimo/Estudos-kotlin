@@ -19,12 +19,14 @@
 */
 
 fun ex05(): String{
-    println("Entrada:")
-    val entradas = readln().split(" ").map { it.toInt() }.toMutableList()
+    print("Entrada: ")
+    val entradas = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size >= 2 }
+        ?: return "Erro"
 
-    entradas[0] = 0
-    val max = entradas.max()
-    val total = entradas.count { it == max }
-
-    return total.toString()
+    val velas = entradas.drop(1)
+    return velas.count { it == velas.max() }.toString()
 }

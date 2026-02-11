@@ -21,17 +21,19 @@ import kotlin.math.ceil
 */
 
 fun ex06(): String {
-    println("Insira o custo da lata de tinta: ")
-    val c = readln().toFloat()
-    println("Insira o rendimento da lata de tinta: ")
-    val m = readln().toFloat()
-    println("Insira a largura da parede: ")
-    val l = readln().toFloat()
-    println("Insira a altura da parede: ")
-    val a = readln().toFloat()
+    fun readFloat(prompt: String): Float =
+        print(prompt).let {
+            readln().toFloatOrNull()?.takeIf { it > 0 } ?: return 0f
+        }
 
-    val metroParede = l * a
-    val quantLatas = ceil(metroParede / m).toInt()
-    val custoTotal = quantLatas * c
-    return "$quantLatas $custoTotal"
+    val custo = readFloat("Insira o custo da lata de tinta: ")
+    val rendimento = readFloat("Insira o rendimento da lata de tinta: ")
+    val largura = readFloat("Insira a largura da parede: ")
+    val altura = readFloat("Insira a altura da parede: ")
+
+    val area = largura * altura
+    val latas = ceil(area / rendimento).toInt()
+    val custoTotal = latas * custo
+
+    return "$latas $custoTotal"
 }

@@ -15,14 +15,19 @@
 */
 
 fun ex02 (): String {
-    println("Insira os números para verificar que tipo de triângulo é: ")
-    val entrada = readln()
-    if (entrada.isEmpty()) return "Erro"
-    val numeros = entrada.split(" ").map { it.toInt() }.sorted()
+    print("Insira os números para verificar que tipo de triângulo é: ")
+    val lados = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .sorted()
+        .takeIf { it.size == 3 && it.first() > 0 }
+        ?: return "Erro"
 
-    if (numeros.size != 3 || numeros[0] <= 0) return "Erro"
-    if (numeros[0] + numeros[1] <= numeros[2]) return "Não forma triângulo"
-    if (numeros[0] == numeros[2]) return "Equilátero"
-    if (numeros[0] == numeros[1] || numeros[1] == numeros[2]) return "Isosceles"
-    return "Escaleno"
+    return when {
+        lados[0] + lados[1] <= lados[2] -> "Não forma triângulo"
+        lados.distinct().size == 1 -> "Equilátero"
+        lados.distinct().size == 2 -> "Isosceles"
+        else -> "Escaleno"
+    }
 }

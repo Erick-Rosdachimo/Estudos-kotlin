@@ -19,19 +19,23 @@
 
 fun ex02(): String{
     val tamanhoVetor = 5
-    println("Insira os números do primeiro vetor:")
-    val vetor1 = readln().split(" ").filter { it.toIntOrNull() != null }.map { it.toInt() }
-    if (vetor1.size != tamanhoVetor) return "Erro"
 
-    println("Insira os números do segundo vetor:")
-    val vetor2 = readln().split(" ").filter { it.toIntOrNull() != null }.map { it.toInt() }
-    if (vetor2.size != tamanhoVetor) return "Erro"
 
-    val novoVetor = mutableListOf<Int>()
+    fun lerVetor(): List<Int>? =
+        readln()
+            .trim()
+            .split(Regex("\\s+"))
+            .mapNotNull { it.toIntOrNull() }
+            .takeIf { it.size == tamanhoVetor }
 
-    for(i in 0..<tamanhoVetor){
-        novoVetor.add(vetor1[i] + vetor2[i])
-    }
+    print("Insira os números do primeiro vetor:")
+    val vetor1 = lerVetor() ?: return "Erro"
 
-    return novoVetor.joinToString(", ")
+    print("Insira os números do segundo vetor:")
+    val vetor2 = lerVetor() ?: return "Erro"
+
+    return vetor1
+        .zip(vetor2)
+        .map { (a, b) -> a + b }
+        .joinToString(", ")
 }

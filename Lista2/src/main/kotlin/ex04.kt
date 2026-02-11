@@ -25,14 +25,40 @@
  */
 
 fun ex04(): String{
-    println("Insira os estados das lâmpadas:")
-    val (iA, iB, fA, fB) = readln().split(" ").map { it.toInt() }
+    print("Insira os estados das lâmpadas:")
 
-    if (iB == fB) {
-        if (iA == fA) return "0"
-        return "1"
+    val (iA, iB, fA, fB) = readln()
+        .trim()
+        .split(Regex("\\s+"))
+        .mapNotNull { it.toIntOrNull() }
+        .takeIf { it.size == 4 }
+        ?: return "Erro"
+
+
+    return when {
+        iB == fB -> if (iA == fA) "0" else "1"
+        iA != fA -> "1"
+        else -> "2"
     }
-
-    if (iA != fA) return "1"
-    return "2"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
